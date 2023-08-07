@@ -31,9 +31,10 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'User already exists' }] });
+        return user;
+        // res
+        //   .status(400)
+        //   .json({ errors: [{ msg: 'User already exists' }] });
       }
       //  Get users gravatar
 
@@ -57,7 +58,7 @@ router.post(
       await user.save();
 
       //  Return jsonwebtoken
-      res.send('User registered great');
+      res.send('User registered');
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
